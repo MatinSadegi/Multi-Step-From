@@ -1,7 +1,13 @@
 import React from "react";
 import { FormWrapper } from ".";
+import { StepProps } from "../types";
 
-const PersonalInfo: React.FC = () => {
+const PersonalInfo: React.FC<StepProps> = ({
+  name,
+  email,
+  phone,
+  updateForm,
+}) => {
   return (
     <FormWrapper
       title="Personal info"
@@ -17,6 +23,9 @@ const PersonalInfo: React.FC = () => {
           placeholder="e.g.Stephen King"
           type="text"
           className="input-style"
+          required
+          value={name}
+          onChange={(e) => updateForm({ name: e.target.value })}
         />
       </div>
       <div className="my-7">
@@ -28,7 +37,11 @@ const PersonalInfo: React.FC = () => {
           id="email"
           placeholder="e.g.stephenking@lorem.com"
           type="email"
+          autoComplete="email"
           className="input-style"
+          required
+          value={email}
+          onChange={(e) => updateForm({ email: e.target.value })}
         />
       </div>
       <div>
@@ -41,6 +54,9 @@ const PersonalInfo: React.FC = () => {
           placeholder="e.g. +1 234 567 890"
           type="tel"
           className=" input-style"
+          value={phone}
+          required
+          onChange={(e) => updateForm({ phone: e.target.value })}
         />
       </div>
     </FormWrapper>

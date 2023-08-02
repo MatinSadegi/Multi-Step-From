@@ -2,7 +2,7 @@ import { useState } from "react";
 
 
 export function useMultiStepForm(steps: number) {
-  const [currentStepIndex, setCurrentStepIndex] = useState(2);
+  const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
   function next() {
     if (currentStepIndex > steps - 1) return;

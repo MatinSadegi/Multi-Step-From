@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Ubuntu", sans-serif;
+  }
+}
+
+@layer components {
+  .input-style {
+    @apply border py-2 px-3 mt-1 rounded-md w-full placeholder:text-marine-blue border-light-gray;
+  }
+  .next-button-style {
+    @apply bg-marine-blue text-white px-5 py-2.5 rounded-md hover:opacity-90;
+  }
+}

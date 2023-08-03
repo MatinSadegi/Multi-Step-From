@@ -3,12 +3,13 @@ import { FormWrapper } from ".";
 import { plans } from "../utils";
 import { StepProps } from "../types";
 
+
 const SelectPlan: React.FC<StepProps> = ({
   planName,
   planLength,
   updateForm,
 }) => {
-  const [isYearly, setIsYearly] = useState(!planLength);
+  const [isYearly, setIsYearly] = useState(planLength);
   return (
     <FormWrapper
       title="Select your plan"
@@ -30,7 +31,7 @@ const SelectPlan: React.FC<StepProps> = ({
               {plan.planTitle}
             </h4>
             <p className="font-normal text-sm text-cool-gray">
-              {isYearly ? plan.planTimePerYear : plan.plantTimePerMonth}
+              ${isYearly ? plan.planTimePerYear : plan.plantTimePerMonth}/{isYearly? "yr" : "mo"}
             </p>
             <p
               className={`text-sm text-marine-blue  ${

@@ -1,6 +1,6 @@
 import React, { useState, FormEvent } from "react";
 import { useMultiStepForm } from "./hooks/useMultiStepForm";
-import { SideBar, PersonalInfo, SelectPlan } from "./components";
+import { SideBar, PersonalInfo, SelectPlan,AddOns } from "./components";
 import { FormItems } from "./types";
 import { sidebar } from "./utils";
 
@@ -10,10 +10,12 @@ const initialValues: FormItems = {
   phone: "",
   planName: "Arcade",
   planLength: false,
+  activeServices :["Online service"]
 };
 
 const App: React.FC = () => {
   const [formData, setFormData] = useState(initialValues);
+  
   const { isLastStep, isFirstStep, currentStepIndex, next, back } =
     useMultiStepForm(sidebar.length);
 
@@ -33,7 +35,8 @@ const App: React.FC = () => {
 
       <form onSubmit={handleSubmit} className="flex flex-col justify-between">
         {currentStepIndex === 0 && <PersonalInfo {...formData} updateForm={updateForm} />}
-        {currentStepIndex === 1 && <SelectPlan  {...formData} updateForm={updateForm} />}
+        {currentStepIndex === 1 && <SelectPlan  {...formData} updateForm={updateForm}  />}
+        {currentStepIndex === 2 && <AddOns  {...formData} updateForm={updateForm} />}
         <div className=" flex justify-between items-center mb-2">
           {!isFirstStep && (
             <button

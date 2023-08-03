@@ -6,6 +6,7 @@ export interface FormItems {
   phone: string;
   planName: string;
   planLength: boolean;
+  activeServices:string[]
 }
 export interface SidebarProps {
   sidebar: string[];

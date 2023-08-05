@@ -6,6 +6,7 @@ import {
   SelectPlan,
   AddOns,
   Summary,
+  FinishingUp,
 } from "./components";
 import { FormItems } from "./types";
 import { sidebar } from "./utils";
@@ -33,6 +34,7 @@ const App: React.FC = () => {
     e.preventDefault();
     next();
   };
+
   return (
     <div className=" w-[90vw]  md:w-[63vw] overflow-hidden h-[80vh] flex justify-between absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
       <SideBar sidebar={sidebar} currentStep={currentStepIndex} />
@@ -50,20 +52,24 @@ const App: React.FC = () => {
         {currentStepIndex === 3 && (
           <Summary {...formData} updateForm={updateForm} />
         )}
-        <div className=" flex justify-between items-center mb-2">
-          {!isFirstStep && (
-            <button
-              onClick={back}
-              type="button"
-              className=" text-cool-gray hover:text-marine-blue "
-            >
-              Go Back
+        {sidebar.length === currentStepIndex ? (
+          <FinishingUp />
+        ) : (
+          <div className=" flex justify-between items-center mb-2">
+            {!isFirstStep && (
+              <button
+                onClick={back}
+                type="button"
+                className=" text-cool-gray hover:text-marine-blue "
+              >
+                Go Back
+              </button>
+            )}
+            <button type="submit" className="next-button-style">
+              {isLastStep ? "Confirm" : "Next Step"}
             </button>
-          )}
-          <button type="submit" className="next-button-style">
-            {isLastStep ? "Confirm" : "Next Step"}
-          </button>
-        </div>
+          </div>
+        )}
       </form>
     </div>
   );

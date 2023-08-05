@@ -31,7 +31,7 @@ export const addOns = [
   {
     service: "Larger storage",
     explanation: "Extra 1TB of cloud save",
-    servicePerMonth: 20,
+    servicePerMonth: 2,
     servicePerYear: 20,
   },
   {

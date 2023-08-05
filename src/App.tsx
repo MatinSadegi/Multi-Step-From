@@ -1,6 +1,12 @@
 import React, { useState, FormEvent } from "react";
 import { useMultiStepForm } from "./hooks/useMultiStepForm";
-import { SideBar, PersonalInfo, SelectPlan,AddOns } from "./components";
+import {
+  SideBar,
+  PersonalInfo,
+  SelectPlan,
+  AddOns,
+  Summary,
+} from "./components";
 import { FormItems } from "./types";
 import { sidebar } from "./utils";
 
@@ -10,20 +16,18 @@ const initialValues: FormItems = {
   phone: "",
   planName: "Arcade",
   planLength: false,
-  activeServices :["Online service"]
+  activeServices: ["Online service"],
 };
 
 const App: React.FC = () => {
   const [formData, setFormData] = useState(initialValues);
-  
+
   const { isLastStep, isFirstStep, currentStepIndex, next, back } =
     useMultiStepForm(sidebar.length);
 
-    const updateForm = (fieldToUpdate:Partial<FormItems>) => {
-      setFormData({...formData, ...fieldToUpdate})
-    }
-
-   
+  const updateForm = (fieldToUpdate: Partial<FormItems>) => {
+    setFormData({ ...formData, ...fieldToUpdate });
+  };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -34,9 +38,18 @@ const App: React.FC = () => {
       <SideBar sidebar={sidebar} currentStep={currentStepIndex} />
 
       <form onSubmit={handleSubmit} className="flex flex-col justify-between">
-        {currentStepIndex === 0 && <PersonalInfo {...formData} updateForm={updateForm} />}
-        {currentStepIndex === 1 && <SelectPlan  {...formData} updateForm={updateForm}  />}
-        {currentStepIndex === 2 && <AddOns  {...formData} updateForm={updateForm} />}
+        {currentStepIndex === 0 && (
+          <PersonalInfo {...formData} updateForm={updateForm} />
+        )}
+        {currentStepIndex === 1 && (
+          <SelectPlan {...formData} updateForm={updateForm} />
+        )}
+        {currentStepIndex === 2 && (
+          <AddOns {...formData} updateForm={updateForm} />
+        )}
+        {currentStepIndex === 3 && (
+          <Summary {...formData} updateForm={updateForm} />
+        )}
         <div className=" flex justify-between items-center mb-2">
           {!isFirstStep && (
             <button

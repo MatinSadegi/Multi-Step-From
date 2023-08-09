@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 export interface FormItems {
-  name: string;
+  userName: string;
   email: string;
   phone: string;
   planName: string;
@@ -19,8 +19,7 @@ export interface FormWrapperProps {
   explanation: string;
 }
 
-export type StepProps = 
-  FormItems & {
+export type StepProps = FormItems & {
   updateForm: (item: Partial<FormItems>) => void;
-}
+};
 

@@ -1,5 +1,7 @@
-import React, { useState, FormEvent } from "react";
+import React, { useState } from "react";
 import { useMultiStepForm } from "./hooks/useMultiStepForm";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   SideBar,
   PersonalInfo,
@@ -10,9 +12,10 @@ import {
 } from "./components";
 import { FormItems } from "./types";
 import { sidebar } from "./utils";
+import { BasicPersonalFormSchema } from "./models/PersonalFormModel";
 
 const initialValues: FormItems = {
-  name: "",
+  userName: "",
   email: "",
   phone: "",
   planName: "Arcade",
@@ -22,16 +25,19 @@ const initialValues: FormItems = {
 
 const App: React.FC = () => {
   const [formData, setFormData] = useState(initialValues);
-
   const { isLastStep, isFirstStep, currentStepIndex, next, back } =
     useMultiStepForm(sidebar.length);
+
+  const { handleSubmit,register,formState:{errors},clearErrors } = useForm<Partial<FormItems>>({
+    resolver: zodResolver(BasicPersonalFormSchema),
+  });
 
   const updateForm = (fieldToUpdate: Partial<FormItems>) => {
     setFormData({ ...formData, ...fieldToUpdate });
   };
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
+  const submitData = () => {
+    
     next();
   };
 
@@ -39,9 +45,20 @@ const App: React.FC = () => {
     <div className=" w-[90vw]  md:w-[63vw] overflow-hidden h-[80vh] flex justify-between absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
       <SideBar sidebar={sidebar} currentStep={currentStepIndex} />
 
-      <form onSubmit={handleSubmit} className="flex flex-col justify-between">
+      <form
+        onSubmit={handleSubmit(submitData)}
+        className="flex flex-col justify-between"
+      >
         {currentStepIndex === 0 && (
-          <PersonalInfo {...formData} updateForm={updateForm} />
+          <PersonalInfo
+            {...formData}
+            updateForm={updateForm}
+            register={register}
+            nameError={errors?.userName?.message}
+            emailError={errors?.email?.message}
+            phoneError={errors?.phone?.message}
+            cleanErrors ={clearErrors}
+          />
         )}
         {currentStepIndex === 1 && (
           <SelectPlan {...formData} updateForm={updateForm} />

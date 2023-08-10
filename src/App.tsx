@@ -47,11 +47,11 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-Magnolia h-screen relative overflow-hidden sm:h-screen sm:flex sm:items-center justify-center ">
-      <div className=" w-screen  overflow-hidden sm:bg-white sm:w-[95vw] md:w-[90vw]  lg:w-[70vw] sm:h-[80vh] sm:flex sm:justify-between sm:p-4 sm:rounded-xl   ">
+      <div className=" w-screen   overflow-hidden sm:bg-white sm:w-[95vw] md:w-[90vw]  lg:w-[70vw] sm:h-[80vh] sm:flex sm:justify-between xl:justify-normal sm:p-4 sm:rounded-xl   ">
         <SideBar sidebar={sidebar} currentStep={currentStepIndex} />
         <form
           onSubmit={handleSubmit(submitData)}
-          className=" sm:overflow-x-hidden    sm:flex sm:flex-col sm:justify-between "
+          className=" sm:overflow-x-hidden  sm:flex sm:flex-col sm:justify-between "
         >
           <div className=" w-[90vw] mx-auto p-7 sm:py-10 sm:px-16 rounded-xl  sm:translate-y-0 -translate-y-10  bg-white flex flex-col justify-between sm:w-full">
             {currentStepIndex === 0 && (

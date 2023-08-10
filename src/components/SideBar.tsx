@@ -3,7 +3,7 @@ import { SidebarProps } from "../types";
 
 const SideBar: React.FC<SidebarProps> = ({ sidebar, currentStep }) => {
   return (
-    <div className="w-full p-10 text-white flex justify-center bg-cover sm:w-[350px] md:bg-contain    bg-sidebar-mobile bg-no-repeat sm:rounded-lg sm:bg-sidebar-desktop sm:block">
+    <div className="w-full p-10  text-white flex justify-center bg-cover sm:w-[350px] md:bg-contain    bg-sidebar-mobile bg-no-repeat sm:rounded-lg sm:bg-sidebar-desktop sm:block">
       {sidebar.map((item, index) => (
         <div key={index} className="flex items-center mb-8">
           <p

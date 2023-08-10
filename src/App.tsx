@@ -47,7 +47,7 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-Magnolia h-screen relative overflow-hidden sm:h-screen sm:flex sm:items-center justify-center ">
-      <div className=" w-screen   overflow-hidden sm:bg-white sm:w-[95vw] md:w-[90vw]  lg:w-[70vw] sm:h-[80vh] sm:flex sm:justify-between xl:justify-normal sm:p-4 sm:rounded-xl   ">
+      <div className=" w-screen   overflow-hidden sm:bg-white sm:w-[95vw] md:w-[90vw]  lg:w-[70vw] sm:h-[75vh] sm:flex sm:justify-between xl:justify-normal sm:p-4 sm:rounded-xl   ">
         <SideBar sidebar={sidebar} currentStep={currentStepIndex} />
         <form
           onSubmit={handleSubmit(submitData)}

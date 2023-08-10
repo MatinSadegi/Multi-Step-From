@@ -7,11 +7,12 @@
   html {
     font-family: "Ubuntu", sans-serif;
   }
+  
 }
 
 @layer components {
   .input-style {
-    @apply border py-2 px-3 mt-1 rounded-md w-full placeholder:text-cool-gray  outline-none focus:border focus:border-purplish-blue;
+    @apply border py-2.5 px-3 mt-1 font-medium rounded-md w-full placeholder:text-cool-gray  outline-none focus:border focus:border-purplish-blue;
   }
   .next-button-style {
     @apply bg-marine-blue text-white px-5 py-2.5 rounded-md hover:opacity-90;

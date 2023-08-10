@@ -3,7 +3,6 @@ import { FormWrapper } from ".";
 import { plans } from "../utils";
 import { StepProps } from "../types";
 
-
 const SelectPlan: React.FC<StepProps> = ({
   planName,
   planLength,
@@ -14,31 +13,32 @@ const SelectPlan: React.FC<StepProps> = ({
       title="Select your plan"
       explanation="You have the option of monthly or yearly billing."
     >
-      <div className="flex gap-4">
+      <div className=" gap-2 sm:justify-between sm:flex ">
         {plans.map((plan) => (
           <div
             key={plan.planTitle}
-            onClick={() =>
-              updateForm({ planName: plan.planTitle })
-            }
-            className={`border border-cool-gray p-4 w-32 rounded-md hover:border-purplish-blue ${
+            onClick={() => updateForm({ planName: plan.planTitle })}
+            className={`border mb-3 flex items-center border-cool-gray p-2.5 sm:p-4  rounded-md hover:border-purplish-blue sm:w-32 sm:mb-0 sm:block ${
               plan.planTitle === planName ? " bg-Magnolia" : "bg-white"
             }`}
           >
             <img src={plan.planeIcon} alt={`${plan.planTitle}-icon`} />
-            <h4 className="mt-8 font-medium  text-marine-blue">
-              {plan.planTitle}
-            </h4>
-            <p className="font-normal text-sm text-cool-gray">
-              ${planLength ? plan.planTimePerYear : plan.plantTimePerMonth}/{planLength? "yr" : "mo"}
-            </p>
-            <p
-              className={`text-sm text-marine-blue  ${
-                planLength ? "block" : "hidden"
-              }`}
-            >
-              2 months free
-            </p>
+            <div className="ml-3">
+              <h4 className="font-bold text-sm  text-marine-blue sm:mt-8 ">
+                {plan.planTitle}
+              </h4>
+              <p className="font-normal text-xs text-cool-gray sm:text-sm">
+                ${planLength ? plan.planTimePerYear : plan.plantTimePerMonth}/
+                {planLength ? "yr" : "mo"}
+              </p>
+              <p
+                className={`text-sm text-marine-blue  ${
+                  planLength ? "block" : "hidden"
+                }`}
+              >
+                2 months free
+              </p>
+            </div>
           </div>
         ))}
       </div>
@@ -48,7 +48,7 @@ const SelectPlan: React.FC<StepProps> = ({
         </p>
         <div
           onClick={() => {
-            updateForm({planLength: planLength ? false : true})
+            updateForm({ planLength: planLength ? false : true });
           }}
           className="flex bg-marine-blue w-8 h-[17px] p-[3px] rounded-full cursor-pointer"
         >
@@ -58,7 +58,9 @@ const SelectPlan: React.FC<StepProps> = ({
             }`}
           ></span>
         </div>
-        <p className={`${planLength ? " text-marine-blue" : " text-cool-gray"}`}>
+        <p
+          className={`${planLength ? " text-marine-blue" : " text-cool-gray"}`}
+        >
           Yearly
         </p>
       </div>

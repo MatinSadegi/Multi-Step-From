@@ -28,7 +28,12 @@ const App: React.FC = () => {
   const { isLastStep, isFirstStep, currentStepIndex, next, back } =
     useMultiStepForm(sidebar.length);
 
-  const { handleSubmit,register,formState:{errors},clearErrors } = useForm<Partial<FormItems>>({
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+    clearErrors,
+  } = useForm<Partial<FormItems>>({
     resolver: zodResolver(BasicPersonalFormSchema),
   });
 
@@ -37,57 +42,62 @@ const App: React.FC = () => {
   };
 
   const submitData = () => {
-    
     next();
   };
 
   return (
-    <div className=" w-[90vw]  md:w-[63vw] overflow-hidden h-[80vh] flex justify-between absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-      <SideBar sidebar={sidebar} currentStep={currentStepIndex} />
-
-      <form
-        onSubmit={handleSubmit(submitData)}
-        className="flex flex-col justify-between"
-      >
-        {currentStepIndex === 0 && (
-          <PersonalInfo
-            {...formData}
-            updateForm={updateForm}
-            register={register}
-            nameError={errors?.userName?.message}
-            emailError={errors?.email?.message}
-            phoneError={errors?.phone?.message}
-            cleanErrors ={clearErrors}
-          />
-        )}
-        {currentStepIndex === 1 && (
-          <SelectPlan {...formData} updateForm={updateForm} />
-        )}
-        {currentStepIndex === 2 && (
-          <AddOns {...formData} updateForm={updateForm} />
-        )}
-        {currentStepIndex === 3 && (
-          <Summary {...formData} updateForm={updateForm} />
-        )}
-        {sidebar.length === currentStepIndex ? (
-          <FinishingUp />
-        ) : (
-          <div className=" flex justify-between items-center mb-2">
-            {!isFirstStep && (
-              <button
-                onClick={back}
-                type="button"
-                className=" text-cool-gray hover:text-marine-blue "
-              >
-                Go Back
-              </button>
+    <div className="bg-Magnolia h-screen relative overflow-hidden sm:h-screen sm:flex sm:items-center justify-center ">
+      <div className=" w-screen  overflow-hidden sm:bg-white sm:w-[95vw] md:w-[90vw]  lg:w-[70vw] sm:h-[80vh] sm:flex sm:justify-between sm:p-4 sm:rounded-xl   ">
+        <SideBar sidebar={sidebar} currentStep={currentStepIndex} />
+        <form
+          onSubmit={handleSubmit(submitData)}
+          className=" sm:overflow-x-hidden    sm:flex sm:flex-col sm:justify-between "
+        >
+          <div className=" w-[90vw] mx-auto p-7 sm:py-10 sm:px-16 rounded-xl  sm:translate-y-0 -translate-y-10  bg-white flex flex-col justify-between sm:w-full">
+            {currentStepIndex === 0 && (
+              <PersonalInfo
+                {...formData}
+                updateForm={updateForm}
+                register={register}
+                nameError={errors?.userName?.message}
+                emailError={errors?.email?.message}
+                phoneError={errors?.phone?.message}
+                cleanErrors={clearErrors}
+              />
             )}
-            <button type="submit" className="next-button-style">
-              {isLastStep ? "Confirm" : "Next Step"}
-            </button>
+            {currentStepIndex === 1 && (
+              <SelectPlan {...formData} updateForm={updateForm} />
+            )}
+            {currentStepIndex === 2 && (
+              <AddOns {...formData} updateForm={updateForm} />
+            )}
+            {currentStepIndex === 3 && (
+              <Summary {...formData} updateForm={updateForm} />
+            )}
+            {sidebar.length === currentStepIndex && <FinishingUp />}
           </div>
-        )}
-      </form>
+          {sidebar.length !== currentStepIndex && (
+            <div
+              className={` w-screen bg-white p-5  flex  absolute bottom-0  sm:w-full sm:static sm:py-0 sm:px-14 ${
+                isFirstStep ? "justify-end" : "justify-between "
+              } items-center`}
+            >
+              {!isFirstStep && (
+                <button
+                  onClick={back}
+                  type="button"
+                  className=" text-cool-gray font-medium hover:text-marine-blue "
+                >
+                  Go Back
+                </button>
+              )}
+              <button type="submit" className="next-button-style">
+                {isLastStep ? "Confirm" : "Next Step"}
+              </button>
+            </div>
+          )}
+        </form>
+      </div>
     </div>
   );
 };

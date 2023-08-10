@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      screens: {
+        xs: "375px",
+      },
       colors: {
         "marine-blue": "hsl(213, 96%, 18%)",
         "strawberry-red": "hsl(354, 84%, 57%)",
@@ -20,6 +23,7 @@ export default {
       },
       backgroundImage: {
         "sidebar-desktop": "url('/src/assets/images/bg-sidebar-desktop.svg')",
+        "sidebar-mobile": "url('/src/assets/images/bg-sidebar-mobile.svg')",
       },
     },
   },

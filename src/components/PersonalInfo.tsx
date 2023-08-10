@@ -31,8 +31,8 @@ const PersonalInfo: React.FC<PersonalFormProps> = ({
       title="Personal info"
       explanation="Please provide your name, email address, and phone number."
     >
-      <div className=" relative">
-        <label htmlFor="name" className=" text-marine-blue">
+      <div>
+        <label htmlFor="name" className=" text-marine-blue ">
           Name
         </label>
         {nameError && (
@@ -52,7 +52,7 @@ const PersonalInfo: React.FC<PersonalFormProps> = ({
           onChange={(e) => updateForm({ userName: e.target.value })}
         />
       </div>
-      <div className="my-7 relative">
+      <div className="my-5 relative">
         <label htmlFor="email" className=" text-marine-blue ">
           Email Address
         </label>

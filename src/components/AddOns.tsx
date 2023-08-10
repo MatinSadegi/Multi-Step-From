@@ -30,7 +30,7 @@ const AddOns: React.FC<StepProps> = ({
                 });
               }
             }}
-            className={`flex justify-between items-center border rounded-md p-4 mb-4 border-light-gray hover:border-purplish-blue ${
+            className={`flex justify-between items-center border rounded-md p-3 mb-4 border-light-gray hover:border-purplish-blue ${
               activeServices.includes(item.service)
                 ? "  bg-Magnolia"
                 : "bg-white"
@@ -52,8 +52,8 @@ const AddOns: React.FC<StepProps> = ({
                   }`}
                 />
               </div>
-              <div className="ml-6">
-                <h4 className="font-medium  text-marine-blue">
+              <div className="ml-4">
+                <h4 className="font-bold text-sm text-marine-blue">
                   {item.service}
                 </h4>
                 <p className="font-normal text-xs text-cool-gray">
@@ -61,7 +61,7 @@ const AddOns: React.FC<StepProps> = ({
                 </p>
               </div>
             </div>
-            <p className=" text-purplish-blue text-sm">
+            <p className=" text-purplish-blue font-medium text-xs sm:text-sm">
               +${planLength ? item.servicePerYear : item.servicePerMonth}/
               {planLength ? "yr" : "mo"}
             </p>

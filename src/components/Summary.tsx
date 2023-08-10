@@ -21,7 +21,7 @@ const Summary: React.FC<StepProps> = ({
       title=" Finishing up"
       explanation="Double-check everything looks OK before confirming."
     >
-      <div className=" bg-Magnolia p-7 rounded-md text-sm text-marine-blue">
+      <div className=" bg-Magnolia p-5 rounded-md text-sm text-marine-blue">
         <div>
           <div className=" border-b mb-4">
             <div className="flex justify-between items-center mb-1 font-medium text-base">
@@ -50,7 +50,7 @@ const Summary: React.FC<StepProps> = ({
             return (
               <div
                 key={currentServices[0].explanation}
-                className="flex justify-between items-center mb-4"
+                className="flex justify-between items-center "
               >
                 <p className="text-cool-gray">{currentServices[0].service}</p>
                 <p className="font-medium">
@@ -65,11 +65,11 @@ const Summary: React.FC<StepProps> = ({
           })}
         </div>
       </div>
-      <div className="flex justify-between items-center p-5">
+      <div className="flex justify-between items-center px-4 mt-4">
         <p className=" text-cool-gray text-sm">
           Total (per {planLength ? "year" : "month"})
         </p>
-        <p className="font-bold text-purplish-blue text-lg">
+        <p className="font-bold text-purplish-blue text-base">
           +${serviceTotal + planTotal}/{planLength ? "yr" : "mo"}
         </p>
       </div>
